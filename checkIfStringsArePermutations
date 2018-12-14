@@ -1,1 +1,29 @@
+public static boolean checkIfPermutations(String str1, String str2){
+    
+      // if the strings do not have the same length,
+      // they cannot be permutations of each other.
+      if (str1.length() != str2.length())
+          return false;
 
+      // assuming strings are ASCII (128)
+      int[] auxArray = new int[128];
+      
+      // traverse first string
+      for (int i = 0; i < str1.length(); i++){
+          
+          int currentChar = str1.charAt(i);
+          auxArray[currentChar]++;
+      }
+      
+      // traverse second string
+      for (int i = 0; i < str2.length(); i++){
+          
+          int currentChar = str2.charAt(i);
+          auxArray[currentChar]--;
+          
+          if (auxArray[currentChar] < 0)
+              return false;
+      }
+      
+      return true;
+}
